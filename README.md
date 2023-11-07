@@ -34,3 +34,15 @@ NB: On first start, since "Python" extension can take longer time to install tha
 mypy and Ruff extensions are installed to help you, as you write code, to detect errors the earliest possible. You are free to disabled them if you want but you should also know that a github action is set to check that the code is mypy and ruff compliant before merging it to "main" and "dev" branches.
 
 The choice to have a mypy/ruff check on a github actions instead of a pre-commit hook is to let you code as you want until you want to merge it to the main branch where then you would have to be conform to common conventions.
+
+# Debugger
+
+A launch.json file is already ready to use. Debugger will start a new instance of the app but running on port 8008. You can change it in the launch.json file (and it must me reflected in devcontainer.json in "forwardPorts" property).
+
+To debug, you just have to click on the "Run and Debug" icon on the side menu and click on the "Run" button. You can go to http://localhost:8008 to see the app running and trigger your breakpoints.
+
+# Git
+
+It is possible to use git from inside your container. For that, if you have cloned the repo with https, it should work out of the box. 
+
+If you have cloned the repo with ssh, follow those instructions: [https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials#_using-ssh-keys)
