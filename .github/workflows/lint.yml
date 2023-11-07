@@ -1,0 +1,62 @@
+name: PR Lint Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+  push:
+    branches:
+      - 'release/*'
+      - 'hotfix/*'
+    paths:
+      - '**.py'  # Specify the paths you want to trigger the workflow on
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.12
+
+      - name: Install Poetry
+        run: |
+          pip install poetry
+          poetry --version
+
+      - name: Install project dependencies
+        run: |
+          # Install dependencies using Poetry
+          poetry install
+
+      - name: Run mypy
+        run: |
+          poetry run mypy ./app
+
+      
+      - name: Check for type errors
+        run: |
+          if [ $? -ne 0 ]; then
+            echo "Type errors found. Please fix them before merging the pull request or pushing changes."
+            exit 1
+          else
+            echo "Type checking passed."
+          fi
+
+      - name: Run ruff
+        run: poetry run ruff ./app
+
+      - name: Check for linting errors
+        run: |
+          if [ $? -ne 0 ]; then
+            echo "Linting errors found. Please fix them before merging the pull request or pushing changes."
+            exit 1
+          else
+            echo "Linting passed."
+          fi

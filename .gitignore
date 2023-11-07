@@ -107,9 +107,8 @@ venv.bak/
 
 .idea/*
 
-# VSCode
-.vscode/*
-!.vscode/launch.json
-
 # Docker
 .docker
+
+# act
+/bin
