@@ -14,6 +14,4 @@ def read_root() -> HomeResponse:
     test = "foo"
     uppercased = test.upper()
 
-    bar = "bar"
-
     return {"Hello": uppercased}
