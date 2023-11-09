@@ -12,6 +12,7 @@ class HomeResponse(TypedDict):
 @app.get("/")
 def read_root() -> HomeResponse:
     test = "foo"
+    test - 3
     uppercased = test.upper()
 
     return {"Hello": uppercased}
