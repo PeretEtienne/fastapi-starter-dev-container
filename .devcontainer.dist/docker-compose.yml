@@ -1,0 +1,12 @@
+services:
+  app:
+    image: starter
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: devcontainer 
+    ports:
+      - "8000:8000"
+      - "8008:8008"
+    volumes:
+      - .:/app
